@@ -65,4 +65,6 @@ def delete_user(
     delete a user with id from the database.
     """
     user = crud.crud_user.delete(db=db, id=id)
+    if not user:
+        raise HTTPException(status_code=404, detail=f"User with id {id} is not found")
     return user

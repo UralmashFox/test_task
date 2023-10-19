@@ -23,7 +23,6 @@ class UserUpdate(UserBase):
 
 # Properties shared by models stored in DB
 class UserInDBBase(UserBase):
-    id: int
 
     class Config:
         orm_mode = True

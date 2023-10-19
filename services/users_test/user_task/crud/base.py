@@ -39,6 +39,9 @@ class CRUDBase(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):  # 1
 
     def delete(self, db: Session, id: Any):
         db_obj = db.query(self.model).filter(self.model.id == id).first()
-        db.delete(db_obj)
-        db.commit()
+        if db_obj:
+            db.delete(db_obj)
+            db.commit()
+        else:
+            return False
         return db_obj
